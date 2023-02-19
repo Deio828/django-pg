@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+django_project/db.sqlite3
+django_project/media/profile_pics
