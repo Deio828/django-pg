@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.auth import views as aut_views
-from django.urls import path, include
+from django.urls import path
 from users import views as users_views
+from blog import views as blog_views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -27,7 +28,11 @@ urlpatterns = [
     path("profile/", users_views.profile, name="profile"),
     path("login/", aut_views.LoginView.as_view(template_name='users/login.html'), name="login"),
     path("logout/", aut_views.LogoutView.as_view(template_name='users/logout.html'), name="logout"),
-    path("", include("blog.urls")),
+    path("", blog_views.PostListView.as_view(), name="blog-home"),
+    path("post/<int:pk>/", blog_views.PostDetailView.as_view(), name="post-detail"),
+    path("post/new/", blog_views.PostCreateView.as_view(), name='post-create'),
+    path("post/<int:pk>/update", blog_views.PostUpdateView.as_view(), name="post-update"),
+    path("about/", blog_views.about, name="blog-about"),
 ]
 
 if settings.DEBUG:

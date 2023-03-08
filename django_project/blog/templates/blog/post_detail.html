@@ -1,0 +1,8 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <img class="rounded-circle" src="{{ post.author.profile.image.url }}">
+    <h1> {{post.title}} </h1>
+    <h2> {{post.author}} </h2>
+    <h4> {{ post.date_posted|date:"d F, Y" }} </h4>
+    <p>{{ post.content }}</p>
+{% endblock content %}
